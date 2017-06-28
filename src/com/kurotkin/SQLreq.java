@@ -1,6 +1,5 @@
 package com.kurotkin;
 
-import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,7 +27,7 @@ public class SQLreq {
                 "       error,\n" +
                 "       result_torque,\n" +
                 "       release_angle,\n" +
-                "       (SELECT torque FROM joint_setting WHERE id = joint_data.settings_id) AS torque," +
+                "       (SELECT torque FROM joint_setting WHERE id = joint_data.settings_id) AS nom_torque," +
                 "       (SELECT tol_lower FROM joint_setting WHERE id = joint_data.settings_id) AS setting_tol_lower," +
                 "       (SELECT tol_upper FROM joint_setting WHERE id = joint_data.settings_id) AS setting_tol_upper" +
                 "  FROM joint_data;";
@@ -50,11 +49,8 @@ public class SQLreq {
                 long timeLong = (long) timeInt * 1000L;
                 newFast.dat = new Date(timeLong);
 
-                int torqueInt = resSet.getInt("max_torque");
-                double torque = (double) torqueInt / 1000.0;
-                String torqueString = Double.toString(torque);
-                BigDecimal val = new BigDecimal(torqueString);
-                newFast.torque = resSet.getDouble("torque");
+                newFast.torque = (double) resSet.getInt("max_torque") / 1000.0;
+                newFast.nom_torque = resSet.getDouble("nom_torque");
                 newFast.tol_lower = newFast.torque - resSet.getDouble("setting_tol_lower");
                 newFast.tol_upper = newFast.torque + resSet.getDouble("setting_tol_upper");
                 newFast.name = resSet.getString("name");

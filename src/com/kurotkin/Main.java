@@ -7,6 +7,6 @@ public class Main {
     public static void main(String[] args) {
         Settings.loadSettings();
         ArrayList<Fastener> fasteners = Connecter.Stahlwille();
-
+        XMLwriter.WriteXML(fasteners);
     }
 }

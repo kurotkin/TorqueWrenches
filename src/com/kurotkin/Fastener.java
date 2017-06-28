@@ -11,6 +11,7 @@ public class Fastener {
     double torque;
     boolean result;
     int serno;
+    double nom_torque;
     double tol_lower;
     double tol_upper;
     String name;
