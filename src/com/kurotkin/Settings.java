@@ -16,6 +16,7 @@ public class Settings {
     public static String sqliteUrl = "C:/ProgramData/STAHLWILLE/Sensomaster4/sensomaster4.db";
     public static String dbUrl = "C:/ProgramData/STAHLWILLE/Sensomaster4/Database.accdb";
     public static String prUrl = "C:/StahlwilleReports";
+    public static String XMLUrl = "C:/zxy";
 
     // Параметры
     public static DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
@@ -29,6 +30,7 @@ public class Settings {
             sqliteUrl = map.get("sqliteUrl").toString();
             dbUrl = map.get("dbUrl").toString();
             prUrl = map.get("prUrl").toString();
+            XMLUrl = map.get("XMLUrl").toString();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (YamlException e) {

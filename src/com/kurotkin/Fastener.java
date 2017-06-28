@@ -8,6 +8,10 @@ import java.util.Date;
 public class Fastener {
     int id;
     Date dat;
-    Double torque;
-    Boolean result;
+    double torque;
+    boolean result;
+    int serno;
+    double tol_lower;
+    double tol_upper;
+    String name;
 }

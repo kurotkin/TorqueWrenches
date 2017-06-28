@@ -1,5 +1,10 @@
 package com.kurotkin;
 
+import java.math.BigDecimal;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  * Created by Vitaly Kurotkin on 27.06.2017.
  */
@@ -28,5 +33,49 @@ public class SQLreq {
                 "       (SELECT tol_upper FROM joint_setting WHERE id = joint_data.settings_id) AS setting_tol_upper" +
                 "  FROM joint_data;";
         return sqlUrl;
+    }
+
+    public static ArrayList<Fastener> req() {
+        ArrayList<Fastener> fasteners = new ArrayList<Fastener>();
+        try {
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:/" + Settings.sqliteUrl);
+            Statement st = conn.createStatement();
+            ResultSet resSet = st.executeQuery(url_1());
+            while (resSet.next()) {
+                Fastener newFast = new Fastener();
+                newFast.serno = resSet.getInt("serno");
+
+                int timeInt = resSet.getInt("time");
+                long timeLong = (long) timeInt * 1000L;
+                newFast.dat = new Date(timeLong);
+
+                int torqueInt = resSet.getInt("max_torque");
+                double torque = (double) torqueInt / 1000.0;
+                String torqueString = Double.toString(torque);
+                BigDecimal val = new BigDecimal(torqueString);
+                newFast.torque = resSet.getDouble("torque");
+                newFast.tol_lower = newFast.torque - resSet.getDouble("setting_tol_lower");
+                newFast.tol_upper = newFast.torque + resSet.getDouble("setting_tol_upper");
+                newFast.name = resSet.getString("name");
+                newFast.id = resSet.getInt("id");
+
+                if (resSet.getInt("result") == 1) {
+                    newFast.result = true;
+                } else if (resSet.getInt("result") == 3) {
+                    if ((newFast.torque > newFast.tol_lower) && (newFast.torque < newFast.tol_upper)) {
+                        newFast.result = true;
+                    } else {
+                        newFast.result = false;
+                    }
+                }
+                fasteners.add(newFast);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return fasteners;
     }
 }
