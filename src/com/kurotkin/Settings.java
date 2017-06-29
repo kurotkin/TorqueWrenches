@@ -17,6 +17,8 @@ public class Settings {
     public static String dbUrl = "C:/ProgramData/STAHLWILLE/Sensomaster4/Database.accdb";
     public static String prUrl = "C:/StahlwilleReports";
     public static String XMLUrl = "C:/zxy";
+    public static int bSizeCEM = 31;
+    public static String portName = "COM4";
 
     // Параметры
     public static DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
@@ -31,6 +33,8 @@ public class Settings {
             dbUrl = map.get("dbUrl").toString();
             prUrl = map.get("prUrl").toString();
             XMLUrl = map.get("XMLUrl").toString();
+            bSizeCEM = Integer.parseInt(map.get("bSizeCEM").toString());
+            portName = map.get("portName").toString();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (YamlException e) {

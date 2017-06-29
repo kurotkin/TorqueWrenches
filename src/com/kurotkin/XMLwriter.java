@@ -11,6 +11,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -77,6 +78,10 @@ public class XMLwriter {
 
         try {
             Transformer t = TransformerFactory.newInstance().newTransformer();
+            File folder = new File("C:\\zxy");
+            if (!folder.exists()) {
+                folder.mkdir();
+            }
             t.transform(new DOMSource(doc), new StreamResult(new FileOutputStream("C:\\zxy\\torquewr.xml")));
         } catch (TransformerConfigurationException e) {
             e.printStackTrace();
@@ -85,7 +90,5 @@ public class XMLwriter {
         } catch (TransformerException e) {
             e.printStackTrace();
         }
-
-
     }
 }

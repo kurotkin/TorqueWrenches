@@ -9,4 +9,7 @@ public class Connecter {
     public static ArrayList<Fastener> Stahlwille() {
         return SQLreq.req();
     }
+    public static ArrayList<Fastener> TohnichiCEM() {
+        return TohnichiCEM.req();
+    }
 }

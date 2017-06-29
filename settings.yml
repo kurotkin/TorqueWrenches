@@ -15,6 +15,6 @@ portName: COM4
 prUrl: C:/StahlwilleReports
 
 # Размер посылки в байтах
-bSize: 31
+bSizeCEM: 31
 
 XMLUrl: C:/zxy
