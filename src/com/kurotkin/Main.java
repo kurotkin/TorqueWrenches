@@ -17,26 +17,23 @@ public class Main {
             argsBad();
         }
         Settings.loadSettings();
-        ArrayList<Fastener> fasteners;
+        ArrayList<Fastener> fasteners = null;
         switch (args[0]) {
             case "St" :
                 fasteners = Connecter.Stahlwille();
-                XMLwriter.WriteXML(fasteners);
-                logWrenches(fasteners);
                 break;
             case "TohnCEM":
                 fasteners = Connecter.TohnichiCEM();
-                XMLwriter.WriteXML(fasteners);
-                logWrenches(fasteners);
                 break;
             case "TohnSTC2":
                 fasteners = Connecter.TohnichiSTC2();
-                XMLwriter.WriteXML(fasteners);
-                logWrenches(fasteners);
                 break;
             default:
                 argsBad();
         }
+        XMLwriter.WriteXML(fasteners);
+        logWrenches(fasteners);
+        PdfWriterReport.writePdfStahlwille(fasteners);
     }
 
     public static void argsBad() {
