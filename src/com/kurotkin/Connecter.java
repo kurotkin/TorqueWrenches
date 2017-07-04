@@ -12,4 +12,7 @@ public class Connecter {
     public static ArrayList<Fastener> TohnichiCEM() {
         return TohnichiCEM.req();
     }
+    public static ArrayList<Fastener> TohnichiSTC2() {
+        return TohnichiSTC2.req();
+    }
 }

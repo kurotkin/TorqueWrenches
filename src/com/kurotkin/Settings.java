@@ -15,9 +15,11 @@ public class Settings {
     // Настройки по умолчанию
     public static String sqliteUrl = "C:/ProgramData/STAHLWILLE/Sensomaster4/sensomaster4.db";
     public static String dbUrl = "C:/ProgramData/STAHLWILLE/Sensomaster4/Database.accdb";
-    public static String prUrl = "C:/StahlwilleReports";
+    public static String stahlwilleReportsUrl = "C:/StahlwilleReports";
+    public static String tohnichiReportsUrl = "C:/StahlwilleReports";
     public static String XMLUrl = "C:/zxy";
     public static int bSizeCEM = 31;
+    public static int bSizeSTC2 = 15;
     public static String portName = "COM4";
 
     // Параметры
@@ -31,9 +33,11 @@ public class Settings {
             Map map = (Map)object;
             sqliteUrl = map.get("sqliteUrl").toString();
             dbUrl = map.get("dbUrl").toString();
-            prUrl = map.get("prUrl").toString();
+            stahlwilleReportsUrl = map.get("StahlwilleReportsUrl").toString();
+            tohnichiReportsUrl = map.get("TohnichiReportsUrl").toString();
             XMLUrl = map.get("XMLUrl").toString();
             bSizeCEM = Integer.parseInt(map.get("bSizeCEM").toString());
+            bSizeSTC2 = Integer.parseInt(map.get("bSizeSTC2").toString());
             portName = map.get("portName").toString();
         } catch (FileNotFoundException e) {
             e.printStackTrace();

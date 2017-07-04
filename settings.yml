@@ -12,9 +12,11 @@ tableName: TohnichiCEM
 portName: COM4
 
 # Папка с автоматическими отчетами в pdf
-prUrl: C:/StahlwilleReports
+StahlwilleReportsUrl: C:/StahlwilleReports
+TohnichiReportsUrl: C:/TohnichiReports
 
 # Размер посылки в байтах
 bSizeCEM: 31
+bSizeSTC2: 15
 
 XMLUrl: C:/zxy

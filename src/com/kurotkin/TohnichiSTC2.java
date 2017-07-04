@@ -8,12 +8,12 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Vitaly Kurotkin on 28.06.2017.
+ * Created by Vitaly Kurotkin on 30.06.2017.
  */
-public class TohnichiCEM {
+public class TohnichiSTC2 {
     public static ArrayList<Fastener> req(){
         ArrayList<Fastener> fasteners = new ArrayList<Fastener>();
-        ComPort comPort = new ComPort(Settings.bSizeCEM);
+        ComPort comPort = new ComPort(Settings.bSizeSTC2);
         while(!comPort.getResult()){
             System.out.println(".");
         }
@@ -28,14 +28,7 @@ public class TohnichiCEM {
                     String[] st = s.split(",");
                     newFast.id = Integer.parseInt(st[1]);
                     newFast.torque = Double.parseDouble(st[2]);
-                    SimpleDateFormat format = new SimpleDateFormat();
-                    format.applyPattern("yy/MM/dd HH:mm:ss");
-                    try {
-                        newFast.dat = format.parse(st[3] + " " + st[4]);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    newFast.tagName = "TohnichiSTC2";
+                    newFast.tagName = "TohnichiCEM";
                     fasteners.add(newFast);
                 }
             }
@@ -44,5 +37,4 @@ public class TohnichiCEM {
         while (!fasteners.isEmpty()) {}
         return fasteners;
     }
-
 }

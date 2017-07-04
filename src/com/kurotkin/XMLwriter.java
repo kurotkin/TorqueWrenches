@@ -38,7 +38,7 @@ public class XMLwriter {
 
     private static void WriteParamXML(ArrayList<Fastener> fasteners) {
         Document doc = builder.newDocument();
-        Element RootElement = doc.createElement("Stahlwille");
+        Element RootElement = doc.createElement(fasteners.get(0).tagName);
 
         for(Fastener f : fasteners) {
             Element fastenerXML = doc.createElement("w" + Integer.toString(f.id));

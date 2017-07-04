@@ -15,4 +15,6 @@ public class Fastener {
     double tol_lower;
     double tol_upper;
     String name;
+    String tagName;
 }
+

@@ -55,6 +55,7 @@ public class SQLreq {
                 newFast.tol_upper = newFast.torque + resSet.getDouble("setting_tol_upper");
                 newFast.name = resSet.getString("name");
                 newFast.id = resSet.getInt("id");
+                newFast.tagName = "Stahlwille";
 
                 if (resSet.getInt("result") == 1) {
                     newFast.result = true;
