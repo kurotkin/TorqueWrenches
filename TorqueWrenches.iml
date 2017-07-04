@@ -10,5 +10,6 @@
     <orderEntry type="library" name="com.esotericsoftware.yamlbeans:yamlbeans:1.12" level="project" />
     <orderEntry type="library" name="org.xerial:sqlite-jdbc:3.19.3" level="project" />
     <orderEntry type="library" name="org.scream3r:jssc:2.8.0" level="project" />
+    <orderEntry type="library" name="com.cedarsoftware:json-io:4.0.1" level="project" />
   </component>
 </module>

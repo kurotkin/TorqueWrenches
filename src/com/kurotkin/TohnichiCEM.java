@@ -17,7 +17,6 @@ public class TohnichiCEM {
         ArrayList<Fastener> fasteners = new ArrayList<Fastener>();
         ComPort comPort = new ComPort(Settings.bSizeCEM);
         while(!comPort.getResult()){
-            System.out.println(".");
         }
 
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();

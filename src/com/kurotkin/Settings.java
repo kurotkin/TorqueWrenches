@@ -40,7 +40,7 @@ public class Settings {
             bSizeCEM = Integer.parseInt(map.get("bSizeCEM").toString());
             bSizeSTC2 = Integer.parseInt(map.get("bSizeSTC2").toString());
             portName = map.get("portName").toString();
-            log.info("Настройки загружены");
+            log.info(" - Настройки загружены");
         } catch (FileNotFoundException e) {
             log.warning(e.toString());
             e.printStackTrace();

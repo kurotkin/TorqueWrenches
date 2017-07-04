@@ -1,5 +1,7 @@
 package com.kurotkin;
 
+import com.cedarsoftware.util.io.JsonWriter;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.LogManager;
@@ -20,20 +22,23 @@ public class Main {
             case "St" :
                 fasteners = Connecter.Stahlwille();
                 XMLwriter.WriteXML(fasteners);
+                logWrenches(fasteners);
                 break;
             case "TohnCEM":
                 fasteners = Connecter.TohnichiCEM();
                 XMLwriter.WriteXML(fasteners);
+                logWrenches(fasteners);
                 break;
             case "TohnSTC2":
                 fasteners = Connecter.TohnichiSTC2();
                 XMLwriter.WriteXML(fasteners);
+                logWrenches(fasteners);
                 break;
             default:
                 argsBad();
         }
-
     }
+
     public static void argsBad() {
         log.warning("Не верные аргументы, допустимые: St, TohnCEM, TohnSTC2");
         System.out.println("Для работы с ключами Stahlwille  запускайте         \"java -jar TorqueWrenches.jar St\"");
@@ -46,8 +51,13 @@ public class Main {
         try {
             LogManager.getLogManager().readConfiguration(Main.class.getResourceAsStream("logging.properties"));
         } catch (IOException e) {
-            log.warning(e.toString());
             System.err.println("Could not setup logger configuration: " + e.toString());
+        }
+    }
+
+    private static void logWrenches(ArrayList<Fastener> fasteners) {
+        for(Fastener f : fasteners) {
+            log.info(JsonWriter.objectToJson(f));
         }
     }
 }
