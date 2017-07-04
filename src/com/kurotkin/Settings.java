@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Map;
-
+import java.util.logging.Logger;
 import com.esotericsoftware.yamlbeans.YamlException;
 import com.esotericsoftware.yamlbeans.YamlReader;
 /**
@@ -21,6 +21,7 @@ public class Settings {
     public static int bSizeCEM = 31;
     public static int bSizeSTC2 = 15;
     public static String portName = "COM4";
+    private static Logger log = Logger.getLogger(Settings.class.getName());
 
     // Параметры
     public static DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
@@ -39,9 +40,12 @@ public class Settings {
             bSizeCEM = Integer.parseInt(map.get("bSizeCEM").toString());
             bSizeSTC2 = Integer.parseInt(map.get("bSizeSTC2").toString());
             portName = map.get("portName").toString();
+            log.info("Настройки загружены");
         } catch (FileNotFoundException e) {
+            log.warning(e.toString());
             e.printStackTrace();
         } catch (YamlException e) {
+            log.warning(e.toString());
             e.printStackTrace();
         }
     }

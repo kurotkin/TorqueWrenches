@@ -3,11 +3,13 @@ package com.kurotkin;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Logger;
 
 /**
  * Created by Vitaly Kurotkin on 27.06.2017.
  */
 public class SQLreq {
+    private static Logger log = Logger.getLogger(SQLreq.class.getName());
     public static String url_1 () {
         String sqlUrl = "SELECT id,\n" +
                 "       serno,\n" +
@@ -22,7 +24,7 @@ public class SQLreq {
                 "       assembly_object,\n" +
                 "       slot_id,\n" +
                 "       seq_position,\n" +
-                "       result,\n" +
+                "       result,\n" + 
                 "       memid,\n" +
                 "       error,\n" +
                 "       result_torque,\n" +
@@ -69,8 +71,10 @@ public class SQLreq {
                 fasteners.add(newFast);
             }
         } catch (ClassNotFoundException e) {
+            log.warning(e.toString());
             e.printStackTrace();
         } catch (SQLException e) {
+            log.warning(e.toString());
             e.printStackTrace();
         }
         return fasteners;

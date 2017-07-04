@@ -15,12 +15,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 /**
  * Created by Vitaly Kurotkin on 28.06.2017.
  */
 public class XMLwriter {
     private static DocumentBuilder builder;
+    private static Logger log = Logger.getLogger(XMLwriter.class.getName());
 
     public static void WriteXML(ArrayList<Fastener> fasteners) {
         ParamLangXML();
@@ -32,6 +34,7 @@ public class XMLwriter {
         try {
             builder = factory.newDocumentBuilder();
         } catch (ParserConfigurationException e) {
+            log.warning(e.toString());
             e.printStackTrace();
         }
     }
@@ -84,10 +87,13 @@ public class XMLwriter {
             }
             t.transform(new DOMSource(doc), new StreamResult(new FileOutputStream("C:\\zxy\\torquewr.xml")));
         } catch (TransformerConfigurationException e) {
+            log.warning(e.toString());
             e.printStackTrace();
         } catch (FileNotFoundException e) {
+            log.warning(e.toString());
             e.printStackTrace();
         } catch (TransformerException e) {
+            log.warning(e.toString());
             e.printStackTrace();
         }
     }

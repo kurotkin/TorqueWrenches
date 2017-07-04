@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 /**
  * Created by Vitaly Kurotkin on 28.06.2017.
  */
 public class TohnichiCEM {
+    private static Logger log = Logger.getLogger(XMLwriter.class.getName());
     public static ArrayList<Fastener> req(){
         ArrayList<Fastener> fasteners = new ArrayList<Fastener>();
         ComPort comPort = new ComPort(Settings.bSizeCEM);
@@ -33,6 +35,7 @@ public class TohnichiCEM {
                     try {
                         newFast.dat = format.parse(st[3] + " " + st[4]);
                     } catch (ParseException e) {
+                        log.warning(e.toString());
                         e.printStackTrace();
                     }
                     newFast.tagName = "TohnichiSTC2";

@@ -2,6 +2,8 @@ package com.kurotkin;
 
 import jssc.*;
 
+import java.util.logging.Logger;
+
 /**
  * Created by Андрей on 29.06.2017.
  */
@@ -10,6 +12,7 @@ public class ComPort {
     private static EventListener serialPortListener;
     private int bSize;
     public int fl;
+    private static Logger log = Logger.getLogger(ComPort.class.getName());
 
     public ComPort(int bSize) {
         fl = 0;
@@ -25,6 +28,7 @@ public class ComPort {
             serialPort.addEventListener (serialPortListener);
         }
         catch (SerialPortException ex) {
+            log.warning(ex.toString());
             ex.printStackTrace();
         }
     }
@@ -60,6 +64,7 @@ public class ComPort {
                     fl = 1;
                 }
                 catch (SerialPortException ex) {
+                    log.warning(ex.toString());
                     ex.printStackTrace();
                 }
             }
