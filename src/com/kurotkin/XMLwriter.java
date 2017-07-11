@@ -46,34 +46,29 @@ public class XMLwriter {
         for(Fastener f : fasteners) {
             Element fastenerXML = doc.createElement("w" + Integer.toString(f.id));
 
-            Element timeXML = doc.createElement("time");
-            String date = Settings.dateFormat.format(f.dat);
-            timeXML.appendChild(doc.createTextNode(date));
-            fastenerXML.appendChild(timeXML);
+            Element idXML = doc.createElement("id");
+            idXML.appendChild(doc.createTextNode(Integer.toString(f.id)));
+            fastenerXML.appendChild(idXML);
 
             Element torqueXML = doc.createElement("torque");
             torqueXML.appendChild(doc.createTextNode(Double.toString(f.torque)));
             fastenerXML.appendChild(torqueXML);
 
-            Element tol_lowerXML = doc.createElement("tol_lower");
-            tol_lowerXML.appendChild(doc.createTextNode(Double.toString(f.tol_lower)));
-            fastenerXML.appendChild(tol_lowerXML);
-
-            Element tol_upperXML = doc.createElement("tol_upper");
-            tol_upperXML.appendChild(doc.createTextNode(Double.toString(f.tol_upper)));
-            fastenerXML.appendChild(tol_upperXML);
-
+            Element timeXML = doc.createElement("time");
+            String date = Settings.dateFormat.format(f.dat);
+            timeXML.appendChild(doc.createTextNode(date));
             Element sernoXML = doc.createElement("serno");
             sernoXML.appendChild(doc.createTextNode(Integer.toString(f.serno)));
-            fastenerXML.appendChild(sernoXML);
 
-            Element nameXML = doc.createElement("name");
-            nameXML.appendChild(doc.createTextNode(f.name));
-            fastenerXML.appendChild(nameXML);
-
-            Element resultXML = doc.createElement("result");
-            resultXML.appendChild(doc.createTextNode(Boolean.toString(f.result)));
-            fastenerXML.appendChild(resultXML);
+            switch(fasteners.get(0).tagName) {
+                case "Stahlwille" :
+                    fastenerXML.appendChild(timeXML);
+                    fastenerXML.appendChild(sernoXML);
+                    break;
+                case "TohnichiCEM" :
+                    fastenerXML.appendChild(timeXML);
+                    break;
+            }
 
             RootElement.appendChild(fastenerXML);
         }

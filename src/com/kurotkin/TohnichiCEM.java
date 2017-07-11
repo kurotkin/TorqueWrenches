@@ -37,7 +37,7 @@ public class TohnichiCEM {
                         log.warning(e.toString());
                         e.printStackTrace();
                     }
-                    newFast.tagName = "TohnichiSTC2";
+                    newFast.tagName = "TohnichiCEM";
                     fasteners.add(newFast);
                 }
             }

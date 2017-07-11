@@ -10,6 +10,7 @@ import static java.lang.System.exit;
 
 public class Main {
     private static Logger log = Logger.getLogger(Main.class.getName());
+    enum Wrenches {STAHLWILLE, TOHNICHI_CEM, TOHNICHI_STC2};
 
     public static void main(String[] args) {
         loadLog();
@@ -21,19 +22,21 @@ public class Main {
         switch (args[0]) {
             case "St" :
                 fasteners = Connecter.Stahlwille();
+                PdfWriterReport.writePdfStahlwille(fasteners);
                 break;
             case "TohnCEM":
                 fasteners = Connecter.TohnichiCEM();
+                PdfWriterReport.writePdfTohnichiCEM(fasteners);
                 break;
             case "TohnSTC2":
                 fasteners = Connecter.TohnichiSTC2();
+                PdfWriterReport.writePdfTohnichiSTC2(fasteners);
                 break;
             default:
                 argsBad();
         }
         XMLwriter.WriteXML(fasteners);
         logWrenches(fasteners);
-        PdfWriterReport.writePdfStahlwille(fasteners);
     }
 
     public static void argsBad() {
