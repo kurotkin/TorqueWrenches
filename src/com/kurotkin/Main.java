@@ -1,6 +1,11 @@
 package com.kurotkin;
 
 import com.cedarsoftware.util.io.JsonWriter;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -8,11 +13,10 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import static java.lang.System.exit;
 
-public class Main {
+public class Main extends Application {
     private static Logger log = Logger.getLogger(Main.class.getName());
-    enum Wrenches {STAHLWILLE, TOHNICHI_CEM, TOHNICHI_STC2};
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         loadLog();
         if (args.length == 0) {
             argsBad();
@@ -59,5 +63,13 @@ public class Main {
         for(Fastener f : fasteners) {
             log.info(JsonWriter.objectToJson(f));
         }
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("views/main.fxml"));
+        primaryStage.setTitle("Users List");
+        primaryStage.setScene(new Scene(root));
+        primaryStage.show();
     }
 }

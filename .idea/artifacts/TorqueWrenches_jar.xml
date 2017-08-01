@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TorqueWrenches:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TorqueWrenches_jar</output-path>
+    <root id="archive" name="TorqueWrenches.jar">
+      <element id="module-output" name="TorqueWrenches" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/sqlite-jdbc-3.19.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jssc-2.8.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/yamlbeans-1.12.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/json-io-4.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/itextpdf-5.5.11.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
