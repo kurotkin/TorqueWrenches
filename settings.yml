@@ -9,7 +9,7 @@ dbUrl: C:/ProgramData/STAHLWILLE/Sensomaster4/Database.accdb
 tableName: TohnichiCEM
 
 # COM порт подключения моментного  ключа
-portName: COM4
+portName: COM7
 
 # Папка с автоматическими отчетами в pdf
 StahlwilleReportsUrl: C:/StahlwilleReports

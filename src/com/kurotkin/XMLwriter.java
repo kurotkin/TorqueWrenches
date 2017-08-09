@@ -1,5 +1,6 @@
 package com.kurotkin;
 
+import com.kurotkin.model.Fastener;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import javax.xml.parsers.DocumentBuilder;
@@ -55,15 +56,19 @@ public class XMLwriter {
             fastenerXML.appendChild(torqueXML);
 
             Element timeXML = doc.createElement("time");
-            String date = Settings.dateFormat.format(f.dat);
-            timeXML.appendChild(doc.createTextNode(date));
+            timeXML.appendChild(doc.createTextNode(Settings.dateFormat.format(f.dat)));
+
             Element sernoXML = doc.createElement("serno");
             sernoXML.appendChild(doc.createTextNode(Integer.toString(f.serno)));
+
+            Element sernoName = doc.createElement("name");
+            sernoName.appendChild(doc.createTextNode(f.name));
 
             switch(fasteners.get(0).tagName) {
                 case "Stahlwille" :
                     fastenerXML.appendChild(timeXML);
                     fastenerXML.appendChild(sernoXML);
+                    fastenerXML.appendChild(sernoName);
                     break;
                 case "TohnichiCEM" :
                     fastenerXML.appendChild(timeXML);

@@ -1,5 +1,7 @@
 package com.kurotkin;
 
+import com.kurotkin.model.Fastener;
+
 import java.util.ArrayList;
 
 /**

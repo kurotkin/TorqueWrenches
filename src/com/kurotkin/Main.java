@@ -1,6 +1,7 @@
 package com.kurotkin;
 
 import com.cedarsoftware.util.io.JsonWriter;
+import com.kurotkin.model.Fastener;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,12 +10,16 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import static java.lang.System.exit;
 
 public class Main extends Application {
     private static Logger log = Logger.getLogger(Main.class.getName());
+    public static ArrayList<Fastener> fasteners;
 
     public static void main(String[] args)  {
         loadLog();
@@ -22,7 +27,6 @@ public class Main extends Application {
             argsBad();
         }
         Settings.loadSettings();
-        ArrayList<Fastener> fasteners = null;
         switch (args[0]) {
             case "St" :
                 fasteners = Connecter.Stahlwille();
@@ -41,6 +45,7 @@ public class Main extends Application {
         }
         XMLwriter.WriteXML(fasteners);
         logWrenches(fasteners);
+        launch(args);
     }
 
     public static void argsBad() {
@@ -68,8 +73,18 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("views/main.fxml"));
-        primaryStage.setTitle("Users List");
+        primaryStage.setTitle("Результаты затяжки");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        service.schedule(new Runnable() {
+            @Override
+            public void run() {
+                exit(0);
+            }
+        }, 3, TimeUnit.SECONDS);
+
+
     }
 }

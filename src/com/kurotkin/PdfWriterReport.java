@@ -2,6 +2,8 @@ package com.kurotkin;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
+import com.kurotkin.model.Fastener;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

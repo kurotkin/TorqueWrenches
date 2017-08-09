@@ -58,9 +58,9 @@ public class ComPort {
         public void serialEvent (SerialPortEvent event)  {
             if (event.isRXCHAR () && event.getEventValue () > bSize){
                 try {
-                    String data = serialPort.readString (event.getEventValue ());
+                    String data = serialPort.readString (event.getEventValue());
                     dataFromSerial += data;
-                    System.out.println(data);
+                    System.out.print(data);
                     fl = 1;
                 }
                 catch (SerialPortException ex) {

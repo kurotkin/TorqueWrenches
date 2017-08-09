@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="624.0"
-            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
-            fx:controller="sample.controller.Controller">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kurotkin.controller.Controller">
     <children>
-        <!-- Таблица в которую мы будем выводит наш pojo -->
-        <TableView fx:id="tableUsers" layoutX="12.0" layoutY="62.0" prefHeight="324.0" prefWidth="600.0">
+        <TableView fx:id="tableFasteners" layoutX="12.0" layoutY="62.0" prefHeight="426.0" prefWidth="761.0">
             <columns>
-                <!-- Колонки таблицы -->
-                <TableColumn prefWidth="80.0" text="№" fx:id="idColumn" />
-                <TableColumn prefWidth="150.0" text="Login" fx:id="loginColumn" />
-                <TableColumn prefWidth="150.0" text="Password" fx:id="passwordColumn" />
-                <TableColumn prefWidth="220.0" text="Email" fx:id="emailColumn" />
+                <TableColumn fx:id="idColumn" prefWidth="64.0" text="id" />
+                <TableColumn fx:id="dateColumn" prefWidth="249.0" text="Дата" />
+                <TableColumn fx:id="torqueColumn" prefWidth="273.0" text="Момент фактический" />
+                <TableColumn fx:id="resultColumn" prefWidth="153.0" text="Результат" />
             </columns>
         </TableView>
-        <Label layoutX="14.0" layoutY="18.0" text="List all users:">
+        <Label layoutX="14.0" layoutY="18.0" text="Результаты затяжки:">
             <font>
                 <Font name="Verdana" size="24.0" />
             </font>

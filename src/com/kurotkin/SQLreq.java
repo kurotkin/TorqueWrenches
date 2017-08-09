@@ -1,5 +1,7 @@
 package com.kurotkin;
 
+import com.kurotkin.model.Fastener;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;

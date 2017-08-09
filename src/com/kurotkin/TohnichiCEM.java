@@ -1,11 +1,10 @@
 package com.kurotkin;
 
+import com.kurotkin.model.Fastener;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 /**
@@ -16,13 +15,9 @@ public class TohnichiCEM {
     public static ArrayList<Fastener> req(){
         ArrayList<Fastener> fasteners = new ArrayList<Fastener>();
         ComPort comPort = new ComPort(Settings.bSizeCEM);
-        while(!comPort.getResult()){
-        }
-
-        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-        service.schedule(new Runnable() {
-            @Override
-            public void run() {
+        while (fasteners.isEmpty()) {
+            if(comPort.getResult()){
+                sleep(4000);
                 String[] str = comPort.getFromSerial().split("\r\n");
                 for (String s : str) {
                     Fastener newFast = new Fastener();
@@ -35,16 +30,24 @@ public class TohnichiCEM {
                         newFast.dat = format.parse(st[3] + " " + st[4]);
                     } catch (ParseException e) {
                         log.warning(e.toString());
+
                         e.printStackTrace();
                     }
                     newFast.tagName = "TohnichiCEM";
                     fasteners.add(newFast);
                 }
             }
-        }, 5, TimeUnit.SECONDS);
-
-        while (!fasteners.isEmpty()) {}
+            sleep(20);
+        }
         return fasteners;
+    }
+
+    private static void sleep(int millis){
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 }
